@@ -1,0 +1,20 @@
+.navbar {
+    background-color: red;
+    height: 50px;
+}
+
+.navbar-home {
+    margin-top: 10px;
+    margin-right: 1000px;
+    margin-left: 15px;
+    height: 30px;
+}
+
+.navbar-signup {
+    height: 25px;
+}
+
+.navbar-login {
+    margin-left: 20px;
+    height: 25px;
+}
