@@ -1,3 +1,10 @@
-post {
+.post {
     background-color: brown;
+}
+
+.singlePost {
+    margin: 10px;
+    border-color: blue;
+    background-color: white;
+    flex-grow: 1;
 }
