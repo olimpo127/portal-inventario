@@ -177,6 +177,8 @@ function Post() {
               <strong>Location:</strong> {post.location}
               <br />
               <strong>Picture:</strong> {post.picture}
+              <br />
+              <button>I am interested</button>
             </li>
           ))}
         </ul>
