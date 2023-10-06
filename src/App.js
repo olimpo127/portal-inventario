@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from "./views/Home";
 import injectContext from "./store/context";
+import Signup from './views/Signup';
+import Login from './views/Login';
 
 
 const App = () => {
@@ -12,6 +14,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>

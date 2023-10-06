@@ -1,15 +1,21 @@
 import React from 'react';
-import "./Navbar.css";
-
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar() {
   return (
     <div className='navbar'>
-      <button className='navbar-home'>HOME</button>
-      <button className='navbar-signup'>Sign Up</button>
-      <button className='navbar-login'>Login</button>
+      <Link to='/' className='navbar-button navbar-home'>
+        Home
+      </Link>
+      <Link to="/signup" className='navbar-button navbar-signup'>
+        Sign Up
+      </Link>
+      <Link to="/login" className='navbar-button navbar-login'>
+        Login
+      </Link>
     </div>
-  )
+  );
 }
 
 export default Navbar;
