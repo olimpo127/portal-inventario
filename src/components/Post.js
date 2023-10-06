@@ -4,7 +4,6 @@ import "./Post.css";
 function Post() {
   const [posts, setPosts] = useState([]);
     const [newPost, setNewPost] = useState({
-      id: null,
       seller: "",
       service: "",
       price: "",
@@ -12,7 +11,7 @@ function Post() {
       picture: "",
     });
     const [updatePost, setUpdatePost] = useState({
-      id: null,
+      id: "",
       seller: "",
       service: "",
       price: "",
@@ -49,8 +48,7 @@ function Post() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Post created:", data);
-          setNewPost({
-            id: null,
+          setNewPost({   
             seller: "",
             service: "",
             price: "",
@@ -63,8 +61,9 @@ function Post() {
     };
   
     const handleDelete = (id) => {
+      console.log('Delete button clicked with id:', id);
       fetch(`http://localhost:5000/posts/${id}`, {
-        method: 'DELETE'
+        method: "DELETE",
       })
         .then(response => {
           if (response.status === 204) {
@@ -178,7 +177,8 @@ function Post() {
               <br />
               <strong>Picture:</strong> {post.picture}
               <br />
-              <button>I am interested</button>
+              <button className="interestedButton">I am interested</button>
+              <button className="deleteButton" onClick={() => handleDelete(post.id)}>Delete Post</button>
             </li>
           ))}
         </ul>
