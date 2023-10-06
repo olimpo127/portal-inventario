@@ -8,3 +8,7 @@
     background-color: white;
     flex-grow: 1;
 }
+
+.createButton {
+    margin-left: 50px;
+}

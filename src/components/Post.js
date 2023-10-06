@@ -1,51 +1,132 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Post.css";
 
 function Post() {
-  const [formData, setFormData] = useState({
-    name: "",
-    price: "",
-    location: "",
-  });
   const [posts, setPosts] = useState([]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Create a new post object
-    const newPost = {
-      name: formData.name,
-      price: formData.price,
-      location: formData.location,
-    };
-
-    // Update the list of posts
-    setPosts([...posts, newPost]);
-
-    // Reset the form and hide it
-    setFormData({
-      name: "",
+    const [newPost, setNewPost] = useState({
+      id: null,
+      seller: "",
+      service: "",
       price: "",
       location: "",
+      picture: "",
     });
-  };
+    const [updatePost, setUpdatePost] = useState({
+      id: null,
+      seller: "",
+      service: "",
+      price: "",
+      location: "",
+      picture: "",
+    });
+  
+    useEffect(() => {
+      getPosts();
+    }, []);
+  
+    const getPosts = () => {
+      fetch("http://localhost:5000/posts/list")
+        .then((response) => response.json())
+        .then((data) => setPosts(data))
+        .catch((error) => console.error("Error:", error));
+    };
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setNewPost({ ...newPost, [name]: value });
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      fetch("http://localhost:5000/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPost),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Post created:", data);
+          setNewPost({
+            id: null,
+            seller: "",
+            service: "",
+            price: "",
+            location: "",
+            picture: "",
+          });
+          getPosts();
+        })
+        .catch((error) => console.error("Error:", error));
+    };
+  
+    const handleDelete = (id) => {
+      fetch(`http://localhost:5000/posts/${id}`, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (response.status === 204) {
+            console.log('Post deleted');
+            getPosts();
+          } else {
+            console.error('Error deleting user');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    };
+    
+    const handleUpdateInputChange = (event) => {
+      const { name, value } = event.target;
+      setUpdatePost({ ...updatePost, [name]: value });
+    };
+    
+    const handleUpdate = (event) => {
+      event.preventDefault();
+  
+      fetch(`http://localhost:5000/posts/${updatePost.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatePost),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Post updated:", data);
+          setUpdatePost({
+            id: "",
+            seller: "",
+            service: "",
+            price: "",
+            location: "",
+            picture: "",
+          });
+          getPosts();
+        })
+        .catch((error) => console.error("Error:", error));
+    };
 
   return (
     <div className="post">
       <form onSubmit={handleFormSubmit}>
         <label>
-          Name:
+          Seller:
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="seller"
+            value={newPost.seller}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+        <label>
+          Service:
+          <input
+            type="text"
+            name="service"
+            value={newPost.service}
             onChange={handleInputChange}
             required
           />
@@ -55,7 +136,7 @@ function Post() {
           <input
             type="number"
             name="price"
-            value={formData.price}
+            value={newPost.price}
             onChange={handleInputChange}
             required
           />
@@ -65,12 +146,21 @@ function Post() {
           <input
             type="text"
             name="location"
-            value={formData.location}
+            value={newPost.location}
             onChange={handleInputChange}
             required
           />
         </label>
-        <button type="submit">Create</button>
+        <label>
+          Picture:
+          <input
+            type="text"
+            name="picture"
+            value={newPost.picture}
+            onChange={handleInputChange}
+          />
+        </label>
+        <button type="submit" className="createButton">Create</button>
       </form>
 
       <div>
@@ -78,11 +168,15 @@ function Post() {
         <ul>
           {posts.map((post, index) => (
             <li key={index} className="singlePost">
-              <strong>Name:</strong> {post.name}
+              <strong>Seller:</strong> {post.seller}
+              <br />
+              <strong>Service:</strong> {post.service}
               <br />
               <strong>Price:</strong> {post.price}
               <br />
               <strong>Location:</strong> {post.location}
+              <br />
+              <strong>Picture:</strong> {post.picture}
             </li>
           ))}
         </ul>
