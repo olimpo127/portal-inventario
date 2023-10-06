@@ -2,6 +2,12 @@
     background-color: brown;
 }
 
+.createNewPost {
+    background-color: yellow;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
 .singlePost {
     margin: 10px;
     border-color: blue;
@@ -16,4 +22,8 @@
 
 .deleteButton {
     margin-left: 60px;
+}
+
+.filters {
+    background-color: blueviolet;
 }
