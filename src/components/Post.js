@@ -18,10 +18,12 @@ function Post() {
       location: "",
       picture: "",
     });
+    
   
-    useEffect(() => {
-      getPosts();
-    }, []);
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setNewPost({ ...newPost, [name]: value });
+    };
   
     const getPosts = () => {
       fetch("http://localhost:5000/posts/list")
@@ -29,12 +31,11 @@ function Post() {
         .then((data) => setPosts(data))
         .catch((error) => console.error("Error:", error));
     };
-  
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setNewPost({ ...newPost, [name]: value });
-    };
-  
+
+    useEffect(() => {
+      getPosts();
+    }, []);
+    
     const handleFormSubmit = (event) => {
       event.preventDefault();
   
@@ -60,6 +61,7 @@ function Post() {
         .catch((error) => console.error("Error:", error));
     };
   
+
     const handleDelete = (id) => {
       console.log('Delete button clicked with id:', id);
       fetch(`http://localhost:5000/posts/${id}`, {
