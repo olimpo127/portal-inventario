@@ -112,7 +112,7 @@ function Signup() {
   
     return (
       <div className="signUp">
-        <h1>User Management</h1>
+        <h1>Create User</h1>
         <form className="signUpForm" onSubmit={handleSubmit}>
           <div>
           <input
@@ -167,6 +167,7 @@ function Signup() {
           </div>
           <button type="submit" className="createUserButton">Create User</button>
         </form>
+        <h1>Delete User</h1>
         <form className="signUpForm">
           <input
             type="text"
@@ -181,6 +182,7 @@ function Signup() {
           </button>
         </form>
   
+        <h1>Update User</h1>
         <form onSubmit={handleUpdate} className="signUpForm">
           <input
             type="text"

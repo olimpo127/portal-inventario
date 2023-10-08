@@ -237,20 +237,23 @@ function Post() {
 
       <h2>Posts:</h2>
       <ul>
-        {filteredPosts.map((post, index) => (
-          <li key={index} className="singlePost">
-             <strong>Seller:</strong> {post.seller}
-              <br />
-              <strong>Service:</strong> {post.service}
-              <br />
-              <strong>Price:</strong> {post.price}
-              <br />
-              <strong>Location:</strong> {post.location}
-              <br />
-              <strong>Picture:</strong> {post.picture}
-              <br />
-              <button className="interestedButton">I am interested</button>
-              <button className="deleteButton" onClick={() => handleDelete(post.id)}>Delete Post</button>
+        {filteredPosts.map((post) => (
+          <li key={post.id} className="singlePost">
+            <strong>Seller:</strong> {post.seller}
+            <br />
+            <strong>Service:</strong> {post.service}
+            <br />
+            <strong>Price:</strong> {post.price}
+            <br />
+            <strong>Location:</strong> {post.location}
+            <br />
+            <strong>Picture:</strong> {post.picture}
+            <br />
+            {/* Display user_id */}
+            <strong>User ID:</strong> {post.user_id}
+            <br />
+            <button className="interestedButton">I am interested</button>
+            <button className="deleteButton" onClick={() => handleDelete(post.id)}>Delete Post</button>
           </li>
         ))}
       </ul>
