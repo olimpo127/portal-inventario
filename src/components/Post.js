@@ -249,7 +249,6 @@ function Post() {
             <br />
             <strong>Picture:</strong> {post.picture}
             <br />
-            {/* Display user_id */}
             <strong>User ID:</strong> {post.user_id}
             <br />
             <button className="interestedButton">I am interested</button>
