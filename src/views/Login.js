@@ -55,10 +55,10 @@ function Login() {
           <div>
           <input
             type="text"
-            name="username"
-            value={newUser.username}
+            name="email"
+            value={newUser.email}
             onChange={handleInputChange}
-            placeholder="Username"
+            placeholder="Email"
             required
           />
           </div>
