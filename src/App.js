@@ -6,6 +6,7 @@ import Home from "./views/Home";
 import injectContext from "./store/context";
 import Signup from './views/Signup';
 import Login from './views/Login';
+import Tasks from './views/Tasks';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/tasks" element={<Tasks />} />
         </Routes>
         <Footer />
       </BrowserRouter>

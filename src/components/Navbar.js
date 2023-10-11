@@ -8,6 +8,9 @@ function Navbar() {
       <Link to="/" className="navbar-home">
         Home
       </Link>
+      <Link to="/tasks" className="navbar-home">
+        Tasks
+      </Link>
       <div className="bottomButtons">
         <Link to="/signup" className="navbar-button navbar-signup">
           Sign Up
