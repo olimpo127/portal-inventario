@@ -9,7 +9,6 @@ function Signup() {
       username: "",
       email: "",
       password: "",
-      picture: "",
     });
     const [updateUser, setUpdateUser] = useState({
       id: "",
@@ -18,7 +17,6 @@ function Signup() {
       username: "",
       email: "",
       password: "",
-      picture: "",
     });
   
     useEffect(() => {
@@ -56,7 +54,6 @@ function Signup() {
             username: "",
             email: "",
             password: "",
-            picture: "",
           });
           getUsers();
         })
@@ -103,7 +100,7 @@ function Signup() {
             username: "",
             email: "",
             password: "",
-            picture: "",
+
           });
           getUsers();
         })
@@ -156,13 +153,6 @@ function Signup() {
             onChange={handleInputChange}
             placeholder="Password"
             required
-          />
-          <input
-            type="text"
-            name="picture"
-            value={newUser.picture}
-            onChange={handleInputChange}
-            placeholder="Picture URL"
           />
           </div>
           <button type="submit" className="createUserButton">Create User</button>
@@ -226,13 +216,6 @@ function Signup() {
             value={updateUser.password}
             onChange={handleUpdateInputChange}
             placeholder="Password"
-          />
-          <input
-            type="text"
-            name="picture"
-            value={updateUser.picture}
-            onChange={handleUpdateInputChange}
-            placeholder="Picture URL"
           />
           <button type="submit" className="createUserButton">Update User</button>
         </form>

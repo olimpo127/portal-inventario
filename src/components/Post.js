@@ -8,7 +8,6 @@ function Post() {
     service: "",
     price: "",
     location: "",
-    picture: "",
   });
   const [updatePost, setUpdatePost] = useState({
     id: "",
@@ -16,7 +15,6 @@ function Post() {
     service: "",
     price: "",
     location: "",
-    picture: "",
   });
   const [filterCriteria, setFilterCriteria] = useState({
     seller: "",
@@ -59,7 +57,6 @@ function Post() {
           service: "",
           price: "",
           location: "",
-          picture: "",
         });
         getPosts();
       })
@@ -106,7 +103,6 @@ function Post() {
           service: "",
           price: "",
           location: "",
-          picture: "",
         });
         getPosts();
       })
@@ -182,15 +178,6 @@ function Post() {
             required
           />
         </label>
-        <label>
-          Picture:
-          <input
-            type="text"
-            name="picture"
-            value={newPost.picture}
-            onChange={handleInputChange}
-          />
-        </label>
         <button type="submit" className="createButton">Create Post</button>
       </form>
 
@@ -246,8 +233,6 @@ function Post() {
             <strong>Price:</strong> {post.price}
             <br />
             <strong>Location:</strong> {post.location}
-            <br />
-            <strong>Picture:</strong> {post.picture}
             <br />
             <strong>User ID:</strong> {post.user_id}
             <br />

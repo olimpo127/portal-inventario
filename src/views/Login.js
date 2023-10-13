@@ -1,81 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import config from "../utils/Config";
 
 function Login() {
-    const [users, setUsers] = useState([]);
-    const [newUser, setNewUser] = useState({
-      username: "",
-      password: "",
-    });
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    secret: config.jwtSecret, // Include the secret key in the request body
+  });
 
-  
-    useEffect(() => {
-      getUsers();
-    }, []);
-  
-    const getUsers = () => {
-      fetch("http://localhost:5000/users/list")
-        .then((response) => response.json())
-        .then((data) => setUsers(data))
-        .catch((error) => console.error("Error:", error));
-    };
-  
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setNewUser({ ...newUser, [name]: value });
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-  
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Send a POST request to your Flask API to login
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Store the JWT token in local storage
+        localStorage.setItem("jwtToken", data.token);
+
+        // Redirect to the protected route after successful login
+        navigate("/Tasks");
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("User created:", data);
-          setNewUser({
-            username: "",
-            password: "",
-          });
-          getUsers();
-        })
-        .catch((error) => console.error("Error:", error));
-    };
-  
+      .catch((error) => console.error("Error:", error));
+  };
 
-    return (
-      <div className="login">
-        <h1>Login</h1>
-        <form className="loginForm" onSubmit={handleSubmit}>
-          <div>
+  return (
+    <div className="login">
+      <h1>Login</h1>
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <div>
           <input
             type="text"
             name="email"
-            value={newUser.email}
+            value={user.email}
             onChange={handleInputChange}
             placeholder="Email"
             required
           />
-          </div>
-          <div>
+        </div>
+        <div>
           <input
             type="password"
             name="password"
-            value={newUser.password}
+            value={user.password}
             onChange={handleInputChange}
             placeholder="Password"
             required
           />
-          </div>
-          <button type="submit" className="loginButton">Login</button>
-        </form>
-      </div>
-    );
+        </div>
+        <button type="submit" className="loginButton">
+          Login
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default Login;

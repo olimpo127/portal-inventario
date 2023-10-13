@@ -1,38 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
-import "./Tasks.css";
 
 const Tasks = () => {
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if the user has a valid JWT token
     const token = localStorage.getItem('jwtToken');
 
     if (!token) {
-      // If the user doesn't have a valid token, navigate to the login page
       navigate('/login');
     } else {
-      // You can add additional logic to verify the token's validity on the server
-      // or decode the token to get user information, if needed.
-
-      // Set loading to false to render the content
-      setLoading(false);
+      // Verify the token on the server side
+      fetch('http://localhost:5000/verify_token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+token
+        },
+        body: JSON.stringify({ token }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            setLoading(false);
+          } else {
+            // Token is invalid, redirect to login
+            navigate('/login');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          navigate('/login');
+        });
     }
   }, [navigate]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          {/* Your tasks content here */}
-          <Post />
-        </div>
-      )}
+      <div>
+        <Post />
+      </div>
     </div>
   );
 };
