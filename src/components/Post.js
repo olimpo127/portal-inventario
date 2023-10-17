@@ -26,6 +26,7 @@ function Post() {
     service: "",
     price: "",
     location: "",
+    option: "",
   });
 
   const [selectedOption, setSelectedOption] = useState('');
@@ -33,7 +34,6 @@ function Post() {
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -92,37 +92,6 @@ function Post() {
       .catch(error => console.error('Error:', error));
   };
 
-  const handleUpdateInputChange = (event) => {
-    const { name, value } = event.target;
-    setUpdatePost({ ...updatePost, [name]: value });
-  };
-
-  const handleUpdate = (event) => {
-    event.preventDefault();
-
-    fetch(`http://localhost:5000/posts/${updatePost.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatePost),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Post updated:", data);
-        setUpdatePost({
-          id: "",
-          name: "",
-          service: "",
-          price: "",
-          location: "",
-          user_id: "",
-        });
-        getPosts();
-      })
-      .catch((error) => console.error("Error:", error));
-  };
-
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
     setFilterCriteria({ ...filterCriteria, [name]: value });
@@ -134,15 +103,17 @@ function Post() {
       service: "",
       price: "",
       location: "",
+      option: "",
     });
   };
 
   const filteredPosts = posts.filter((post) => {
-    const { name, service, price, location } = filterCriteria;
-
+    const { name, price, location, option } = filterCriteria;
+    const optionFilter = option === '' || post.service === option;
+  
     return (
+      optionFilter &&
       (!name || post.name.toLowerCase().includes(name.toLowerCase())) &&
-      (!service || post.service.toLowerCase().includes(service.toLowerCase())) &&
       (!price || parseFloat(post.price) >= parseFloat(price)) &&
       (!location || post.location.toLowerCase().includes(location.toLowerCase()))
     );
@@ -151,14 +122,14 @@ function Post() {
   return (
     <div className="post">
       <form className="createNewPost" onSubmit={handleFormSubmit}>
-      <h2>Crea tu Post</h2>
-{/*       <label>Choose an option:</label>
-      <select value={selectedOption} onChange={handleOptionChange}>
-        <option value="">Select an option</option>
-        <option value="Option1">OFREZCO SERVICIO</option>
-        <option value="Option2">BUSCO SERVICIO</option>
-      </select> */}
-      <label>
+        <h2>Crea tu Post</h2>
+        {/* <label>Tipo de Post:</label>
+        <select value={selectedOption} onChange={handleOptionChange}>
+          <option value="">Select an option</option>
+          <option value="Option1">Ofrezco</option>
+          <option value="Option2">Busco</option>
+        </select> */}
+        <label>
           name:
           <input
             type="text"
@@ -239,6 +210,18 @@ function Post() {
             onChange={handleFilterChange}
           />
         </label>
+        {/* <label>
+          Filter by Option:
+          <select
+            name="option"
+            value={filterCriteria.option}
+            onChange={handleFilterChange}
+          >
+            <option value="">All</option>
+            <option value="Option1">Ofrezco</option>
+            <option value="Option2">Busco</option>
+          </select>
+        </label> */}
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
 
