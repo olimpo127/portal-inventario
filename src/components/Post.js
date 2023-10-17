@@ -4,20 +4,22 @@ import "./Post.css";
 function Post() {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState({
-    seller: "",
+    name: "",
     service: "",
     price: "",
     location: "",
+    user_id: "",
   });
   const [updatePost, setUpdatePost] = useState({
     id: "",
-    seller: "",
+    name: "",
     service: "",
     price: "",
     location: "",
+    user_id: "",
   });
   const [filterCriteria, setFilterCriteria] = useState({
-    seller: "",
+    name: "",
     service: "",
     price: "",
     location: "",
@@ -53,10 +55,11 @@ function Post() {
       .then((data) => {
         console.log("Post created:", data);
         setNewPost({
-          seller: "",
+          name: "",
           service: "",
           price: "",
           location: "",
+          user_id: "",
         });
         getPosts();
       })
@@ -99,10 +102,11 @@ function Post() {
         console.log("Post updated:", data);
         setUpdatePost({
           id: "",
-          seller: "",
+          name: "",
           service: "",
           price: "",
           location: "",
+          user_id: "",
         });
         getPosts();
       })
@@ -116,7 +120,7 @@ function Post() {
 
   const clearFilters = () => {
     setFilterCriteria({
-      seller: "",
+      name: "",
       service: "",
       price: "",
       location: "",
@@ -124,10 +128,10 @@ function Post() {
   };
 
   const filteredPosts = posts.filter((post) => {
-    const { seller, service, price, location } = filterCriteria;
+    const { name, service, price, location } = filterCriteria;
 
     return (
-      (!seller || post.seller.toLowerCase().includes(seller.toLowerCase())) &&
+      (!name || post.name.toLowerCase().includes(name.toLowerCase())) &&
       (!service || post.service.toLowerCase().includes(service.toLowerCase())) &&
       (!price || parseFloat(post.price) >= parseFloat(price)) &&
       (!location || post.location.toLowerCase().includes(location.toLowerCase()))
@@ -139,11 +143,11 @@ function Post() {
       <form className="createNewPost" onSubmit={handleFormSubmit}>
       <h2>Crea tu Post</h2>
       <label>
-          Seller:
+          name:
           <input
             type="text"
-            name="seller"
-            value={newPost.seller}
+            name="name"
+            value={newPost.name}
             onChange={handleInputChange}
             required
           />
@@ -184,11 +188,11 @@ function Post() {
       <div className="filters">
         <h2>Búsqueda por filtros</h2>
         <label>
-          Filter by Seller:
+          Filter by name:
           <input
             type="text"
-            name="seller"
-            value={filterCriteria.seller}
+            name="name"
+            value={filterCriteria.name}
             onChange={handleFilterChange}
           />
         </label>
@@ -226,7 +230,7 @@ function Post() {
       <ul>
         {filteredPosts.map((post) => (
           <li key={post.id} className="singlePost">
-            <strong>Seller:</strong> {post.seller}
+            <strong>name:</strong> {post.name}
             <br />
             <strong>Service:</strong> {post.service}
             <br />

@@ -27,7 +27,7 @@ function Navbar() {
         <Link to="/login" className="navbar-button navbar-login">
           Login
         </Link>
-        <button onClick={handleLogout} className="logout">Logout</button>
+        <button onClick={handleLogout} className="logout logout-button">Logout</button>
       </div>
     </div>
   );
