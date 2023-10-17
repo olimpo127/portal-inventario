@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -29,7 +30,9 @@ function Home() {
       </div>
       <p>Join our community and start exchanging services today!</p>
       <div className="cta-buttons">
-        <button className="find-button">Find or Become a TaskBuddy here</button>
+      <Link to="/tasks" className="become">
+        Find or Become a TaskBuddy here
+      </Link>
       </div>
     </div>
   );
