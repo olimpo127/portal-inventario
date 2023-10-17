@@ -3,6 +3,7 @@ import "./Post.css";
 
 function Post() {
   const [posts, setPosts] = useState([]);
+
   const [newPost, setNewPost] = useState({
     name: "",
     service: "",
@@ -10,6 +11,7 @@ function Post() {
     location: "",
     user_id: "",
   });
+
   const [updatePost, setUpdatePost] = useState({
     id: "",
     name: "",
@@ -18,12 +20,20 @@ function Post() {
     location: "",
     user_id: "",
   });
+
   const [filterCriteria, setFilterCriteria] = useState({
     name: "",
     service: "",
     price: "",
     location: "",
   });
+
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -142,6 +152,12 @@ function Post() {
     <div className="post">
       <form className="createNewPost" onSubmit={handleFormSubmit}>
       <h2>Crea tu Post</h2>
+{/*       <label>Choose an option:</label>
+      <select value={selectedOption} onChange={handleOptionChange}>
+        <option value="">Select an option</option>
+        <option value="Option1">OFREZCO SERVICIO</option>
+        <option value="Option2">BUSCO SERVICIO</option>
+      </select> */}
       <label>
           name:
           <input
