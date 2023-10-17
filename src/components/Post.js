@@ -123,12 +123,12 @@ function Post() {
     <div className="post">
       <form className="createNewPost" onSubmit={handleFormSubmit}>
         <h2>Crea tu Post</h2>
-        {/* <label>Tipo de Post:</label>
+        <label>Tipo de Post:</label>
         <select value={selectedOption} onChange={handleOptionChange}>
           <option value="">Select an option</option>
           <option value="Option1">Ofrezco</option>
           <option value="Option2">Busco</option>
-        </select> */}
+        </select>
         <label>
           name:
           <input
@@ -210,7 +210,7 @@ function Post() {
             onChange={handleFilterChange}
           />
         </label>
-        {/* <label>
+        <label>
           Filter by Option:
           <select
             name="option"
@@ -221,7 +221,7 @@ function Post() {
             <option value="Option1">Ofrezco</option>
             <option value="Option2">Busco</option>
           </select>
-        </label> */}
+        </label> 
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
 
