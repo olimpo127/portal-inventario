@@ -5,7 +5,6 @@ function Post() {
   const [posts, setPosts] = useState([]);
 
   const [newPost, setNewPost] = useState({
-    name: "",
     service: "",
     price: "",
     location: "",
@@ -15,7 +14,6 @@ function Post() {
 
   const [updatePost, setUpdatePost] = useState({
     id: "",
-    name: "",
     service: "",
     price: "",
     location: "",
@@ -23,7 +21,6 @@ function Post() {
   });
 
   const [filterCriteria, setFilterCriteria] = useState({
-    name: "",
     service: "",
     price: "",
     location: "",
@@ -74,7 +71,6 @@ function Post() {
       .then((data) => {
         console.log("Post created:", data);
         setNewPost({
-          name: "",
           service: "",
           price: "",
           location: "",
@@ -109,7 +105,6 @@ function Post() {
 
   const clearFilters = () => {
     setFilterCriteria({
-      name: "",
       service: "",
       price: "",
       location: "",
@@ -118,12 +113,11 @@ function Post() {
   };
 
   const filteredPosts = posts.filter((post) => {
-    const { name, price, location, option } = filterCriteria;
+    const { price, location, option } = filterCriteria;
     const optionFilter = option === "" || post.service === option;
 
     return (
       optionFilter &&
-      (!name || post.name.toLowerCase().includes(name.toLowerCase())) &&
       (!price || parseFloat(post.price) >= parseFloat(price)) &&
       (!location ||
         post.location.toLowerCase().includes(location.toLowerCase()))
@@ -135,16 +129,6 @@ function Post() {
       {/* ---------------------------------creacion post--------------------------------------- */}
       <form className="createNewPost" onSubmit={handleFormSubmit}>
         <h2>Crea tu Post</h2>
-        <label>
-          name:
-          <input
-            type="text"
-            name="name"
-            value={newPost.name}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
         <label>
           Service:
           <input
@@ -194,15 +178,6 @@ function Post() {
       <div className="filters">
         <h2>Búsqueda por filtros</h2>
         <label>
-          Filter by name:
-          <input
-            type="text"
-            name="name"
-            value={filterCriteria.name}
-            onChange={handleFilterChange}
-          />
-        </label>
-        <label>
           Filter by Service:
           <input
             type="text"
@@ -248,8 +223,6 @@ function Post() {
       <ul>
         {filteredPosts.map((post) => (
           <li key={post.id} className="singlePost">
-            <strong>name:</strong> {post.name}
-            <br />
             <strong>Service:</strong> {post.service}
             <br />
             <strong>Price:</strong> {post.price}
