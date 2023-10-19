@@ -9,6 +9,7 @@ function Post() {
     service: "",
     price: "",
     location: "",
+    option: "",
     user_id: "",
   });
 
@@ -29,7 +30,9 @@ function Post() {
     option: "",
   });
 
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const token = localStorage.getItem("jwtToken");
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -37,7 +40,11 @@ function Post() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setNewPost({ ...newPost, [name]: value });
+    if (name === "option") {
+      setSelectedOption(value);
+    } else {
+      setNewPost({ ...newPost, [name]: value });
+    }
   };
 
   const getPosts = () => {
@@ -58,6 +65,7 @@ function Post() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify(newPost),
     })
@@ -69,6 +77,7 @@ function Post() {
           service: "",
           price: "",
           location: "",
+          option: "",
           user_id: "",
         });
         getPosts();
@@ -77,19 +86,19 @@ function Post() {
   };
 
   const handleDelete = (id) => {
-    console.log('Delete button clicked with id:', id);
+    console.log("Delete button clicked with id:", id);
     fetch(`http://localhost:5000/posts/${id}`, {
       method: "DELETE",
     })
-      .then(response => {
+      .then((response) => {
         if (response.status === 204) {
-          console.log('Post deleted');
+          console.log("Post deleted");
           getPosts();
         } else {
-          console.error('Error deleting post');
+          console.error("Error deleting post");
         }
       })
-      .catch(error => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   };
 
   const handleFilterChange = (event) => {
@@ -109,26 +118,22 @@ function Post() {
 
   const filteredPosts = posts.filter((post) => {
     const { name, price, location, option } = filterCriteria;
-    const optionFilter = option === '' || post.service === option;
-  
+    const optionFilter = option === "" || post.service === option;
+
     return (
       optionFilter &&
       (!name || post.name.toLowerCase().includes(name.toLowerCase())) &&
       (!price || parseFloat(post.price) >= parseFloat(price)) &&
-      (!location || post.location.toLowerCase().includes(location.toLowerCase()))
+      (!location ||
+        post.location.toLowerCase().includes(location.toLowerCase()))
     );
   });
 
   return (
     <div className="post">
+      {/* ---------------------------------creacion post--------------------------------------- */}
       <form className="createNewPost" onSubmit={handleFormSubmit}>
         <h2>Crea tu Post</h2>
-        <label>Tipo de Post:</label>
-        <select value={selectedOption} onChange={handleOptionChange}>
-          <option value="">Select an option</option>
-          <option value="Option1">Ofrezco</option>
-          <option value="Option2">Busco</option>
-        </select>
         <label>
           name:
           <input
@@ -169,9 +174,22 @@ function Post() {
             required
           />
         </label>
-        <button type="submit" className="createButton">Create Post</button>
-      </form>
+        <label>Tipo de Post:</label>
+        <select
+          name="option"
+          onChange={handleOptionChange}
+          value={selectedOption}
+        >
+          <option value="">Option</option>
+          <option value="Ofrezco">Ofrezco</option>
+          <option value="Busco">Busco</option>
+        </select>
 
+        <button type="submit" className="createButton">
+          Create Post
+        </button>
+      </form>
+      {/* --------------------------------Filtros post-------------------------------------------------- */}
       <div className="filters">
         <h2>Búsqueda por filtros</h2>
         <label>
@@ -218,13 +236,13 @@ function Post() {
             onChange={handleFilterChange}
           >
             <option value="">All</option>
-            <option value="Option1">Ofrezco</option>
-            <option value="Option2">Busco</option>
+            <option value="option1">Ofrezco</option>
+            <option value="option2">Busco</option>
           </select>
-        </label> 
+        </label>
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
-
+      {/* --------------------------------POSTS-------------------------------------------------- */}
       <h2>Posts:</h2>
       <ul>
         {filteredPosts.map((post) => (
@@ -237,10 +255,17 @@ function Post() {
             <br />
             <strong>Location:</strong> {post.location}
             <br />
+            <strong>Option:</strong> {post.option}
+            <br />
             <strong>User ID:</strong> {post.user_id}
             <br />
             <button className="interestedButton">I am interested</button>
-            <button className="deleteButton" onClick={() => handleDelete(post.id)}>Delete Post</button>
+            <button
+              className="deleteButton"
+              onClick={() => handleDelete(post.id)}
+            >
+              Delete Post
+            </button>
           </li>
         ))}
       </ul>

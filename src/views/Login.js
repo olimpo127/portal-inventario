@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import config from "../utils/Config";
 
+
 function Login() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -10,6 +11,8 @@ function Login() {
     password: "",
     secret: config.jwtSecret, // Include the secret key in the request body
   });
+
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
