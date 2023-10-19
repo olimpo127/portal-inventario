@@ -113,14 +113,13 @@ function Post() {
   };
 
   const filteredPosts = posts.filter((post) => {
-    const { price, location, option } = filterCriteria;
-    const optionFilter = option === "" || post.service === option;
+    const { service, price, location, option } = filterCriteria;
 
     return (
-      optionFilter &&
+      (!service || post.service.toLowerCase().includes(service.toLowerCase())) &&
       (!price || parseFloat(post.price) >= parseFloat(price)) &&
-      (!location ||
-        post.location.toLowerCase().includes(location.toLowerCase()))
+      (!location || post.location.toLowerCase().includes(location.toLowerCase())) &&
+      (!option || post.option.includes(option))
     );
   });
 
@@ -205,17 +204,18 @@ function Post() {
           />
         </label>
         <label>
-          Filter by Option:
-          <select
-            name="option"
-            value={filterCriteria.option}
-            onChange={handleFilterChange}
-          >
-            <option value="">All</option>
-            <option value="option1">Ofrezco</option>
-            <option value="option2">Busco</option>
-          </select>
-        </label>
+  Filter by Option:
+  <select
+    name="option"
+    value={filterCriteria.option}
+    onChange={handleFilterChange}
+  >
+    <option value="">All</option>
+    <option value="Ofrezco">Ofrezco</option>
+    <option value="Busco">Busco</option>
+  </select>
+</label>
+
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
       {/* --------------------------------POSTS-------------------------------------------------- */}
