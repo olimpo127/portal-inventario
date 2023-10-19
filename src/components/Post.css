@@ -1,11 +1,79 @@
-.post {
-    background-color: brown;
+/* Styles for the container holding createNewPost and filters */
+.postContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.createNewPost {
-    background-color: yellow;
-    margin-bottom: 30px;
-    margin-top: 20px;
+.createNewPost,
+.filters {
+    flex: 1;
+    /* Share the available width equally between createNewPost and filters */
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    max-width: calc(50% - 10px);
+    /* Set a maximum width for both sections with a small separation */
+    box-sizing: border-box;
+    /* Ensure padding is included in the width */
+}
+
+/* Styles for createNewPost and filters content */
+.createNewPost h2,
+.filters h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.createNewPost .form-group,
+.filters .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Display inputs below labels */
+}
+
+.createNewPost label,
+.filters label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.createNewPost input,
+.createNewPost select,
+.filters input,
+.filters select {
+    width: 100%; /* Full width for inputs */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.createNewPost button.createButton,
+.filters button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.createNewPost button.createButton:hover,
+.filters button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles for the post section */
+.post {
+    background-color: brown;
+    margin-top: 30px;
 }
 
 .singlePost {
@@ -24,6 +92,22 @@
     margin-left: 60px;
 }
 
-.filters {
-    background-color: blueviolet;
+/* Center the h2 and button in createNewPost and filters sections */
+.createNewPost h2,
+.filters h2,
+.createNewPost button.createButton,
+.filters button {
+    text-align: center;
+    margin: 0 auto;
+    /* Center horizontally */
+    display: block;
+    /* Ensure they take up the full width */
 }
+
+.createNewPost input,
+.createNewPost select,
+.filters input,
+.filters select {
+    width: 50%;
+}
+

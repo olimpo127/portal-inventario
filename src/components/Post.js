@@ -131,56 +131,65 @@ function Post() {
   return (
     <div className="post">
       {/* ---------------------------------creacion post--------------------------------------- */}
+      <div className="postContainer">
       <form className="createNewPost" onSubmit={handleFormSubmit}>
         <h2>Crea tu Post</h2>
-        <label>
-          Service:
+        <div className="form-group">
+          <label htmlFor="service">Service:</label>
           <input
             type="text"
+            id="service"
             name="service"
             value={newPost.service}
             onChange={handleInputChange}
             required
           />
-        </label>
-        <label>
-          Price:
+        </div>
+        <div className="form-group">
+          <label htmlFor="price">Price:</label>
           <input
             type="number"
+            id="price"
             name="price"
             value={newPost.price}
             onChange={handleInputChange}
             required
           />
-        </label>
-        <label>
-          Location:
+        </div>
+        <div className="form-group">
+          <label htmlFor="location">Location:</label>
           <input
             type="text"
+            id="location"
             name="location"
             value={newPost.location}
             onChange={handleInputChange}
             required
           />
-        </label>
-        <label>Tipo de Post:</label>
-        <select
-          name="option"
-          onChange={handleOptionChange}
-          value={selectedOption}
-        >
-          <option value="">Option</option>
-          <option value="Ofrezco">Ofrezco</option>
-          <option value="Busco">Busco</option>
-        </select>
-
-        <button type="submit" className="createButton">
-          Create Post
-        </button>
+        </div>
+        <div className="form-group">
+          <label htmlFor="option">Tipo de Post:</label>
+          <select
+            id="option"
+            name="option"
+            onChange={handleOptionChange}
+            value={selectedOption}
+          >
+            <option value="">Option</option>
+            <option value="Ofrezco">Ofrezco</option>
+            <option value="Busco">Busco</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <button type="submit" className="createButton">
+            Create Post
+          </button>
+        </div>
       </form>
       {/* --------------------------------Filtros post-------------------------------------------------- */}
       <div className="filters">
         <h2>Búsqueda por filtros</h2>
+        <div className="form-group">
         <label>
           Filter by Service:
           <input
@@ -190,6 +199,8 @@ function Post() {
             onChange={handleFilterChange}
           />
         </label>
+        </div>
+        <div className="form-group">
         <label>
           Filter by Price:
           <input
@@ -199,6 +210,8 @@ function Post() {
             onChange={handleFilterChange}
           />
         </label>
+        </div>
+        <div className="form-group">
         <label>
           Filter by Location:
           <input
@@ -208,6 +221,8 @@ function Post() {
             onChange={handleFilterChange}
           />
         </label>
+        </div>
+        <div className="form-group">
         <label>
           Filter by Option:
           <select
@@ -220,6 +235,8 @@ function Post() {
             <option value="Busco">Busco</option>
           </select>
         </label>
+        </div>
+        <div className="form-group">
         <label>
           Filter by User:
           <input
@@ -229,9 +246,12 @@ function Post() {
             onChange={handleFilterChange}
           />
         </label>
+        </div>
 
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
+      </div>
+      
       {/* --------------------------------POSTS-------------------------------------------------- */}
       <h2>Posts:</h2>
       <ul>
