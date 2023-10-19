@@ -36,6 +36,7 @@ function Post() {
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
+    setNewPost({ ...newPost, option: e.target.value });
   };
 
   const handleInputChange = (event) => {
