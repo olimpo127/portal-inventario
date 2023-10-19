@@ -25,6 +25,7 @@ function Post() {
     price: "",
     location: "",
     option: "",
+    user_id: "",
   });
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -109,17 +110,21 @@ function Post() {
       price: "",
       location: "",
       option: "",
+      user_id: "",
     });
   };
 
   const filteredPosts = posts.filter((post) => {
-    const { service, price, location, option } = filterCriteria;
+    const { service, price, location, option, user_id } = filterCriteria;
 
     return (
-      (!service || post.service.toLowerCase().includes(service.toLowerCase())) &&
+      (!service ||
+        post.service.toLowerCase().includes(service.toLowerCase())) &&
       (!price || parseFloat(post.price) >= parseFloat(price)) &&
-      (!location || post.location.toLowerCase().includes(location.toLowerCase())) &&
-      (!option || post.option.includes(option))
+      (!location ||
+        post.location.toLowerCase().includes(location.toLowerCase())) &&
+      (!option || post.option.includes(option)) &&
+      (!user_id || post.user_id.toLowerCase().includes(user_id))
     );
   });
 
@@ -204,17 +209,26 @@ function Post() {
           />
         </label>
         <label>
-  Filter by Option:
-  <select
-    name="option"
-    value={filterCriteria.option}
-    onChange={handleFilterChange}
-  >
-    <option value="">All</option>
-    <option value="Ofrezco">Ofrezco</option>
-    <option value="Busco">Busco</option>
-  </select>
-</label>
+          Filter by Option:
+          <select
+            name="option"
+            value={filterCriteria.option}
+            onChange={handleFilterChange}
+          >
+            <option value="">All</option>
+            <option value="Ofrezco">Ofrezco</option>
+            <option value="Busco">Busco</option>
+          </select>
+        </label>
+        <label>
+          Filter by User:
+          <input
+            type="text"
+            name="user_id"
+            value={filterCriteria.user_id}
+            onChange={handleFilterChange}
+          />
+        </label>
 
         <button onClick={clearFilters}>Clear Filters</button>
       </div>
