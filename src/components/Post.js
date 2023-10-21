@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Post.css";
 
+
 function Post() {
   const [posts, setPosts] = useState([]);
 
@@ -31,6 +32,7 @@ function Post() {
   const [selectedOption, setSelectedOption] = useState("");
 
   const token = localStorage.getItem("jwtToken");
+
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -174,8 +176,9 @@ function Post() {
               name="option"
               onChange={handleOptionChange}
               value={selectedOption}
+              required
             >
-              <option value="">Option</option>
+              <option value="" disabled>Select an option</option>
               <option value="Ofrezco">Ofrezco</option>
               <option value="Busco">Busco</option>
             </select>
@@ -258,12 +261,12 @@ function Post() {
             <strong>User ID:</strong> {post.user_id}
             <br />
             <button className="interestedButton">I am interested</button>
-            <button
-              className="deleteButton"
-              onClick={() => handleDelete(post.id)}
-            >
-              Delete Post
-            </button>
+              <button
+                className="deleteButton"
+                onClick={() => handleDelete(post.id)}
+              >
+                Delete Post
+              </button>
           </li>
         ))}
       </ul>

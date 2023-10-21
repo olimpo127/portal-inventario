@@ -39,7 +39,7 @@ function Navbar() {
             <button onClick={handleLogout} className="logout logout-button">
               Logout
             </button>
-            <Link to="/profile" className="navbar-home">
+            <Link to="/profile" className="navbar-profile">
               Profile
             </Link>
           </React.Fragment>
