@@ -7,6 +7,7 @@ import injectContext from "./store/context";
 import Signup from "./views/Signup";
 import Login from "./views/Login";
 import Tasks from "./views/Tasks";
+import Profile from "./views/Profile";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />

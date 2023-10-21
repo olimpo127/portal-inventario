@@ -35,9 +35,14 @@ function Navbar() {
             </Link>
           </React.Fragment>
         ) : (
-          <button onClick={handleLogout} className="logout logout-button">
-            Logout
-          </button>
+          <React.Fragment>
+            <button onClick={handleLogout} className="logout logout-button">
+              Logout
+            </button>
+            <Link to="/profile" className="navbar-home">
+              Profile
+            </Link>
+          </React.Fragment>
         )}
       </div>
     </div>
