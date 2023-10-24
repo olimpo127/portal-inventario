@@ -1,3 +1,9 @@
 .profile {
-    background-color: blue;
+    text-align: center;
 }
+
+.loading {
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+  }

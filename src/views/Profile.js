@@ -3,6 +3,7 @@ import "./Profile.css";
 
 function Profile() {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Make an API request to fetch the user's profile data from the backend
@@ -23,6 +24,8 @@ function Profile() {
         }
       } catch (error) {
         console.error("Error fetching user profile: ", error);
+      } finally {
+        setLoading(false); // Set loading to false once the request is complete
       }
     };
 
@@ -30,15 +33,19 @@ function Profile() {
   }, []);
 
   return (
-    <div>
+    <div className="profile">
       <h1>Profile</h1>
-      <div>
-        <p>Name: {user.name}</p>
-        <p>Lastname: {user.lastname}</p>
-        <p>Username: {user.username}</p>
-        <p>Email: {user.email}</p>
-        {/* Add more fields as needed */}
-      </div>
+      {loading ? (
+        <p className="loading">Loading...</p> // Display a loading message while loading is true
+      ) : (
+        <div>
+          <p>Name: {user.name}</p>
+          <p>Lastname: {user.lastname}</p>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          {/* Add more fields as needed */}
+        </div>
+      )}
     </div>
   );
 }
