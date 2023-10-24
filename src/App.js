@@ -10,6 +10,7 @@ import Tasks from "./views/Tasks";
 import Profile from "./views/Profile";
 import Othersprofile from "./views/Othersprofile";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import Secretroute from "./views/Secretroute";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/otherprofile/:email" element={<Othersprofile />} />
+        <Route path="/secretroute918yhi1uj" element={<Secretroute />} /> {/* This Route is for accessing a secret route to delete/update users */}
       </Routes>
       <Footer />
     </BrowserRouter>
