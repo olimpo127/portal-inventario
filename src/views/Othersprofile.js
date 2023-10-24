@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
-import "./Profile.css";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import "./Othersprofile.css";
 
-function Profile() {
+function Othersprofile() {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const { email } = useParams();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch("http://localhost:5000/profile/", {
+        const response = await fetch(`http://localhost:5000/profile/${email}`, { 
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json"
           },
         });
         if (response.status === 200) {
@@ -23,18 +25,18 @@ function Profile() {
       } catch (error) {
         console.error("Error fetching user profile: ", error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
     fetchUserProfile();
-  }, []);
+  }, [email]);
 
   return (
     <div className="profile">
       <h1>Profile</h1>
       {loading ? (
-        <p className="loading">Loading...</p> 
+        <p className="loading">Loading...</p>
       ) : (
         <div>
           <p>Name: {user.name}</p>
@@ -47,4 +49,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Othersprofile;

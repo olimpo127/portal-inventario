@@ -8,6 +8,7 @@ import Signup from "./views/Signup";
 import Login from "./views/Login";
 import Tasks from "./views/Tasks";
 import Profile from "./views/Profile";
+import Othersprofile from "./views/Othersprofile";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/otherprofile/:email" element={<Othersprofile />} />
       </Routes>
       <Footer />
     </BrowserRouter>

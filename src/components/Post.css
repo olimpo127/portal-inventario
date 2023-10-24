@@ -1,4 +1,3 @@
-/* Styles for the container holding createNewPost and filters */
 .postContainer {
     display: flex;
     justify-content: space-between;
@@ -8,7 +7,6 @@
 .createNewPost,
 .filters {
     flex: 1;
-    /* Share the available width equally between createNewPost and filters */
     background-color: #f0f0f0;
     padding: 20px;
     border: 1px solid #ccc;
@@ -16,12 +14,9 @@
     margin-bottom: 20px;
     margin-top: 10px;
     max-width: calc(50% - 10px);
-    /* Set a maximum width for both sections with a small separation */
     box-sizing: border-box;
-    /* Ensure padding is included in the width */
 }
 
-/* Styles for createNewPost and filters content */
 .createNewPost h2,
 .filters h2 {
     font-size: 24px;
@@ -70,7 +65,6 @@
     background-color: #0056b3;
 }
 
-/* Styles for the post section */
 .post {
     background-color: brown;
     margin-top: 30px;
@@ -92,16 +86,13 @@
     margin-left: 60px;
 }
 
-/* Center the h2 and button in createNewPost and filters sections */
 .createNewPost h2,
 .filters h2,
 .createNewPost button.createButton,
 .filters button {
     text-align: center;
     margin: 0 auto;
-    /* Center horizontally */
     display: block;
-    /* Ensure they take up the full width */
 }
 
 .createNewPost input,

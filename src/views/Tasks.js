@@ -13,7 +13,6 @@ const Tasks = () => {
     if (!token) {
       navigate('/login');
     } else {
-      // Verify the token on the server side
       fetch('http://localhost:5000/verify_token', {
         method: 'POST',
         headers: {
@@ -26,7 +25,6 @@ const Tasks = () => {
           if (response.ok) {
             setLoading(false);
           } else {
-            // Token is invalid, redirect to login
             navigate('/login');
           }
         })

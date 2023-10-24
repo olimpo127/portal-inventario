@@ -22,7 +22,6 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Send a POST request to your Flask API to login
     fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
@@ -32,10 +31,8 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Store the JWT token in local storage
         localStorage.setItem("jwtToken", data.token);
 
-        // Redirect to the protected route after successful login
         navigate("/Tasks");
       })
       .catch((error) => console.error("Error:", error));
