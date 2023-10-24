@@ -259,7 +259,7 @@ function Post() {
             <br />
             <strong>Option:</strong> {post.option}
             <br />
-            <Link to={`/otherprofile/${post.user_id}`}>
+            <Link to={`/profile/${post.user_id}`}>
               <strong>User ID:</strong> {post.user_id}
             </Link>
             <br />
