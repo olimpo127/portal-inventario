@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Post.css";
-
 
 function Post() {
   const [posts, setPosts] = useState([]);
@@ -32,7 +32,6 @@ function Post() {
   const [selectedOption, setSelectedOption] = useState("");
 
   const token = localStorage.getItem("jwtToken");
-
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -178,7 +177,9 @@ function Post() {
               value={selectedOption}
               required
             >
-              <option value="" disabled>Select an option</option>
+              <option value="" disabled>
+                Select an option
+              </option>
               <option value="Ofrezco">Ofrezco</option>
               <option value="Busco">Busco</option>
             </select>
@@ -258,15 +259,17 @@ function Post() {
             <br />
             <strong>Option:</strong> {post.option}
             <br />
-            <strong>User ID:</strong> {post.user_id}
+            <Link to={`/profile/${post.user_id}`}>
+              <strong>User ID:</strong> {post.user_id}
+            </Link>
             <br />
             <button className="interestedButton">I am interested</button>
-              <button
-                className="deleteButton"
-                onClick={() => handleDelete(post.id)}
-              >
-                Delete Post
-              </button>
+            <button
+              className="deleteButton"
+              onClick={() => handleDelete(post.id)}
+            >
+              Delete Post
+            </button>
           </li>
         ))}
       </ul>

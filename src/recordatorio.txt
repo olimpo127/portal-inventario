@@ -1,1 +1,1 @@
-Tengo que arreglar Login o Tasks, por ahi va la cosa
+voy a modificar Post, Profile, App y agregar una ruta al back.
