@@ -32,7 +32,7 @@ function Profile() {
 
   return (
     <div className="profile">
-      <h1>Profile</h1>
+      <h1>My Profile</h1>
       {loading ? (
         <p className="loading">Loading...</p> 
       ) : (

@@ -141,6 +141,7 @@ function Post() {
               type="text"
               id="service"
               name="service"
+              placeholder="Publica el servicio que ofreces o buscas"
               value={newPost.service}
               onChange={handleInputChange}
               required
@@ -198,6 +199,7 @@ function Post() {
             <input
               type="text"
               name="service"
+              placeholder="Servicio que ofreces o buscas"
               value={filterCriteria.service}
               onChange={handleFilterChange}
             />

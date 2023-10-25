@@ -33,8 +33,8 @@ function Othersprofile() {
   }, [email]);
 
   return (
-    <div className="profile">
-      <h1>Profile</h1>
+    <div className="other-users-profile">
+      <h1>{user.name}'s Profile</h1>
       {loading ? (
         <p className="loading">Loading...</p>
       ) : (
