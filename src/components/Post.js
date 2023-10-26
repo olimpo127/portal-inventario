@@ -249,32 +249,35 @@ function Post() {
       </div>
 
       {/* --------------------------------POSTS-------------------------------------------------- */}
-      <h2>Posts:</h2>
-      <ul>
-        {filteredPosts.map((post) => (
-          <li key={post.id} className="singlePost">
-            <strong>Service:</strong> {post.service}
-            <br />
-            <strong>Price:</strong> {post.price}
-            <br />
-            <strong>Location:</strong> {post.location}
-            <br />
-            <strong>Option:</strong> {post.option}
-            <br />
-            <Link to={`/profile/${post.user_id}`}>
-              <strong>User ID:</strong> {post.user_id}
-            </Link>
-            <br />
-            <button className="interestedButton">I am interested</button>
-            <button
-              className="deleteButton"
-              onClick={() => handleDelete(post.id)}
-            >
-              Delete Post
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="posts">
+        <h2>Posts:</h2>
+        <ul className="singlePost">
+          {filteredPosts.map((post) => (
+            <li key={post.id} className="singlePost">
+              <strong>Service:</strong> {post.service}
+              <br />
+              <strong>Price:</strong> {post.price}
+              <br />
+              <strong>Location:</strong> {post.location}
+              <br />
+              <strong>Option:</strong> {post.option}
+              <br />
+              <Link to={`/profile/${post.user_id}`}>
+                <strong>User ID:</strong> {post.user_id}
+              </Link>
+              <br />
+              <br />
+              <button className="interestedButton">I am interested</button>
+              <button
+                className="deleteButton"
+                onClick={() => handleDelete(post.id)}
+              >
+                Delete Post
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

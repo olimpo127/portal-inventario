@@ -34,11 +34,11 @@ function Othersprofile() {
 
   return (
     <div className="other-users-profile">
-      <h1>{user.name}'s Profile</h1>
       {loading ? (
         <p className="loading">Loading...</p>
       ) : (
         <div>
+          <h1>{user.name}'s Profile</h1>
           <p>Name: {user.name}</p>
           <p>Lastname: {user.lastname}</p>
           <p>Username: {user.username}</p>

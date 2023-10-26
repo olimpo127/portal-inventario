@@ -102,4 +102,69 @@
     width: 50%;
 }
 
+.posts {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center the container horizontally */
+    max-width: 600px; /* Limit the maximum width */
+  }
+  
+  .posts h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .singlePost {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .singlePost strong {
+    font-weight: bold;
+  }
+  
+  .singlePost a {
+    text-decoration: none;
+    color: #0077cc;
+  }
+  
+  .singlePost a:hover {
+    text-decoration: underline;
+  }
+  
+  .interestedButton {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .interestedButton:hover {
+    background-color: #45a048;
+  }
+  
+  .deleteButton {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #d32f2f;
+  }
+  
 
+  
