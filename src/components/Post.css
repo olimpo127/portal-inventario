@@ -191,4 +191,26 @@
   }
 }
 
-  
+.displayButtonFilters {
+  background-color: hsl(27, 100%, 40%);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  max-height: 40px;
+  max-width: 250px;
+}
+
+.displayButtonFilters:hover {
+  background-color: #a69e00;
+}
+
+@media screen and (max-width: 768px) {
+  .displayButtonFilters {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}

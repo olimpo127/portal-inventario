@@ -112,7 +112,7 @@ function Post() {
     return (
       (!service ||
         post.service.toLowerCase().includes(service.toLowerCase())) &&
-      (!price || parseFloat(post.price) >= parseFloat(price)) &&
+      (!price || parseFloat(post.price) <= parseFloat(price)) &&
       (!location ||
         post.location.toLowerCase().includes(location.toLowerCase())) &&
       (!option || post.option.includes(option)) &&
@@ -187,7 +187,7 @@ function Post() {
           </form>
         )}
 
-        <button onClick={() => setShowFiltersForm(!showFiltersForm)} className="displayButton">
+        <button onClick={() => setShowFiltersForm(!showFiltersForm)} className="displayButtonFilters">
           {showFiltersForm ? "Hide Filters" : "Show Filters"}
         </button>
         {showFiltersForm && (
