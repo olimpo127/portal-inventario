@@ -124,7 +124,7 @@ function Post() {
     <div className="post">
       <div className="postContainer">
         <button onClick={() => setShowCreatePostForm(!showCreatePostForm)} className="displayButton">
-          {showCreatePostForm ? "Hide Create Post Form" : "Show Create Post Form"}
+          {showCreatePostForm ? "Hide Create Post Form" : "Create a new Post"}
         </button>
         {showCreatePostForm && (
           <form className="createNewPost" onSubmit={handleFormSubmit}>
