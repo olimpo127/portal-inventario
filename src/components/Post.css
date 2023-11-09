@@ -167,4 +167,26 @@
   }
   
 
+.displayButton {
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.displayButton:hover {
+  background-color: #005ea6;
+}
+
+@media screen and (max-width: 768px) {
+  .displayButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
   

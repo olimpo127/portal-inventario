@@ -4,7 +4,6 @@ import "./Post.css";
 
 function Post() {
   const [posts, setPosts] = useState([]);
-
   const [newPost, setNewPost] = useState({
     service: "",
     price: "",
@@ -12,15 +11,6 @@ function Post() {
     option: "",
     user_id: "",
   });
-
-  const [updatePost, setUpdatePost] = useState({
-    id: "",
-    service: "",
-    price: "",
-    location: "",
-    user_id: "",
-  });
-
   const [filterCriteria, setFilterCriteria] = useState({
     service: "",
     price: "",
@@ -28,8 +18,9 @@ function Post() {
     option: "",
     user_id: "",
   });
-
   const [selectedOption, setSelectedOption] = useState("");
+  const [showCreatePostForm, setShowCreatePostForm] = useState(false);
+  const [showFiltersForm, setShowFiltersForm] = useState(false);
 
   const token = localStorage.getItem("jwtToken");
 
@@ -131,124 +122,132 @@ function Post() {
 
   return (
     <div className="post">
-      {/* ---------------------------------creacion post--------------------------------------- */}
       <div className="postContainer">
-        <form className="createNewPost" onSubmit={handleFormSubmit}>
-          <h2>Crea tu Post</h2>
-          <div className="form-group">
-            <label htmlFor="service">Service:</label>
-            <input
-              type="text"
-              id="service"
-              name="service"
-              placeholder="Publica el servicio que ofreces o buscas"
-              value={newPost.service}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="price">Price:</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={newPost.price}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="location">Location:</label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              value={newPost.location}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="option">Tipo de Post:</label>
-            <select
-              id="option"
-              name="option"
-              onChange={handleOptionChange}
-              value={selectedOption}
-              required
-            >
-              <option value="" disabled>
-                Select an option
-              </option>
-              <option value="Ofrezco">Ofrezco</option>
-              <option value="Busco">Busco</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <button type="submit" className="createButton">
-              Create Post
-            </button>
-          </div>
-        </form>
-        {/* --------------------------------Filtros post-------------------------------------------------- */}
-        <div className="filters">
-          <h2>Búsqueda por filtros</h2>
-          <div className="form-group">
-            <label>Filter by Service:</label>
-            <input
-              type="text"
-              name="service"
-              placeholder="Servicio que ofreces o buscas"
-              value={filterCriteria.service}
-              onChange={handleFilterChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Filter by Price:</label>
-            <input
-              type="number"
-              name="price"
-              value={filterCriteria.price}
-              onChange={handleFilterChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Filter by Location:</label>
-            <input
-              type="text"
-              name="location"
-              value={filterCriteria.location}
-              onChange={handleFilterChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Filter by Option:</label>
-            <select
-              name="option"
-              value={filterCriteria.option}
-              onChange={handleFilterChange}
-            >
-              <option value="">All</option>
-              <option value="Ofrezco">Ofrezco</option>
-              <option value="Busco">Busco</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Filter by User:</label>
-            <input
-              type="text"
-              name="user_id"
-              value={filterCriteria.user_id}
-              onChange={handleFilterChange}
-            />
-          </div>
+        <button onClick={() => setShowCreatePostForm(!showCreatePostForm)} className="displayButton">
+          {showCreatePostForm ? "Hide Create Post Form" : "Show Create Post Form"}
+        </button>
+        {showCreatePostForm && (
+          <form className="createNewPost" onSubmit={handleFormSubmit}>
+            <h2>Crea tu Post</h2>
+            <div className="form-group">
+              <label htmlFor="service">Service:</label>
+              <input
+                type="text"
+                id="service"
+                name="service"
+                placeholder="Publica el servicio que ofreces o buscas"
+                value={newPost.service}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="price">Price:</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value={newPost.price}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="location">Location:</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                value={newPost.location}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="option">Tipo de Post:</label>
+              <select
+                id="option"
+                name="option"
+                onChange={handleOptionChange}
+                value={selectedOption}
+                required
+              >
+                <option value="" disabled>
+                  Select an option
+                </option>
+                <option value="Ofrezco">Ofrezco</option>
+                <option value="Busco">Busco</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <button type="submit" className="createButton">
+                Create Post
+              </button>
+            </div>
+          </form>
+        )}
 
-          <button onClick={clearFilters}>Clear Filters</button>
-        </div>
+        <button onClick={() => setShowFiltersForm(!showFiltersForm)} className="displayButton">
+          {showFiltersForm ? "Hide Filters" : "Show Filters"}
+        </button>
+        {showFiltersForm && (
+          <div className="filters">
+            <h2>Búsqueda por filtros</h2>
+            <div className="form-group">
+              <label>Filter by Service:</label>
+              <input
+                type="text"
+                name="service"
+                placeholder="Servicio que ofreces o buscas"
+                value={filterCriteria.service}
+                onChange={handleFilterChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Filter by Price:</label>
+              <input
+                type="number"
+                name="price"
+                value={filterCriteria.price}
+                onChange={handleFilterChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Filter by Location:</label>
+              <input
+                type="text"
+                name="location"
+                value={filterCriteria.location}
+                onChange={handleFilterChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Filter by Option:</label>
+              <select
+                name="option"
+                value={filterCriteria.option}
+                onChange={handleFilterChange}
+              >
+                <option value="">All</option>
+                <option value="Ofrezco">Ofrezco</option>
+                <option value="Busco">Busco</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Filter by User:</label>
+              <input
+                type="text"
+                name="user_id"
+                value={filterCriteria.user_id}
+                onChange={handleFilterChange}
+              />
+            </div>
+
+            <button onClick={clearFilters}>Clear Filters</button>
+          </div>
+        )}
       </div>
 
-      {/* --------------------------------POSTS-------------------------------------------------- */}
       <div className="posts">
         <h2>Posts:</h2>
         <ul className="singlePost">
