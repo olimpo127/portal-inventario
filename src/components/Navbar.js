@@ -73,7 +73,7 @@ function Navbar() {
             </button>
             {/* Render the user's name in place of "Profile" */}
             <Link to="/profile" className="navbar-profile">
-              {user ? `${user.name} ${user.lastname}` : 'Profile'}
+              {user ? `${user.name[0]} . ${user.lastname[0]}` : 'Profile'}
             </Link>
           </React.Fragment>
         )}
