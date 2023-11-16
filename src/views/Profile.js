@@ -40,14 +40,19 @@ function Profile() {
 
   const handleDelete = async (id) => {
     console.log("Delete button clicked with id:", id);
-
+  
     try {
       const response = await fetch(`http://localhost:5000/posts/${id}`, {
         method: "DELETE",
       });
-
+  
       if (response.ok) {
         console.log("Post deleted");
+        // Update user state by filtering out the deleted post
+        setUser((prevUser) => ({
+          ...prevUser,
+          posts: prevUser.posts.filter((post) => post.id !== id),
+        }));
       } else {
         console.error(`Error deleting post: ${response.statusText}`);
       }
@@ -74,19 +79,27 @@ function Profile() {
     setUpdateCurrentPost({ ...updateCurrentPost, [name]: value });
   };
 
-  const handleUpdate = (event) => {
+  const handleUpdate = async (event) => {
     event.preventDefault();
-
-    fetch(`http://localhost:5000/posts/${updateCurrentPost.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateCurrentPost),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Post updated:", data);
+  
+    try {
+      const response = await fetch(`http://localhost:5000/posts/${updateCurrentPost.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateCurrentPost),
+      });
+  
+      if (response.ok) {
+        console.log("Post updated");
+        // Update user state with the updated post
+        setUser((prevUser) => ({
+          ...prevUser,
+          posts: prevUser.posts.map((post) =>
+            post.id === updateCurrentPost.id ? updateCurrentPost : post
+          ),
+        }));
         setUpdateCurrentPost({
           id: "",
           service: "",
@@ -96,8 +109,12 @@ function Profile() {
           user_id: "",
         });
         setUpdatePost(false);
-      })
-      .catch((error) => console.error("Error:", error));
+      } else {
+        console.error(`Error updating post: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
