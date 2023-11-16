@@ -8,7 +8,7 @@ function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    secret: config.jwtSecret, // Include the secret key in the request body
+    secret: config.jwtSecret, 
   });
 
   const handleInputChange = (event) => {
