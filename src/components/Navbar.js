@@ -14,13 +14,12 @@ function Navbar() {
     // Define the API endpoint
     const apiUrl = "http://localhost:5000/initials/";
 
-    // Fetch user information from the API
     const fetchUserInitials = async () => {
       try {
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${jwtToken}`, // Add the JWT token to the headers
+            Authorization: `Bearer ${jwtToken}`, 
           },
         });
 
@@ -28,7 +27,7 @@ function Navbar() {
           const userData = await response.json();
           setUser(userData);
         } else {
-          // Handle error response
+
           console.error("Error fetching user data:", response.status);
         }
       } catch (error) {
@@ -36,14 +35,11 @@ function Navbar() {
       }
     };
 
-    // Call the fetch function
     fetchUserInitials();
-  }, [jwtToken]); // Trigger the effect when the jwtToken changes
+  }, [jwtToken]); 
 
   const handleLogout = () => {
-    // Clear the JWT token from local storage
     localStorage.removeItem('jwtToken');
-    // Redirect to the login page
     navigate('/login');
   };
 
@@ -56,7 +52,6 @@ function Navbar() {
         Tasks
       </Link>
       <div className="bottomButtons">
-        {/* Conditional rendering of buttons */}
         {!jwtToken ? (
           <React.Fragment>
             <Link to="/signup" className="navbar-button navbar-signup">
@@ -71,9 +66,11 @@ function Navbar() {
             <button onClick={handleLogout} className="logout logout-button">
               Logout
             </button>
-            {/* Render the user's name in place of "Profile" */}
             <Link to="/profile" className="navbar-profile">
-              {user ? `${user.name[0]} . ${user.lastname[0]}` : 'Profile'}
+              {user ? `${user.name}´s profile` : 'Profile'}
+            </Link>
+            <Link to="/message" className="navbar-button navbar-login">
+              Inbox
             </Link>
           </React.Fragment>
         )}

@@ -35,30 +35,6 @@ function Secretroute() {
       setNewUser({ ...newUser, [name]: value });
     };
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
-  
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("User created:", data);
-          setNewUser({
-            name: "",
-            lastname: "",
-            username: "",
-            email: "",
-            password: "",
-          });
-          getUsers();
-        })
-        .catch((error) => console.error("Error:", error));
-    };
   
     const handleDelete = (id) => {
       fetch(`http://localhost:5000/users/${id}`, {

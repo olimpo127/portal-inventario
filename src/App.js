@@ -11,6 +11,7 @@ import Profile from "./views/Profile";
 import Othersprofile from "./views/Othersprofile";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Secretroute from "./views/Secretroute";
+import Message from "./views/Message";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route element={<PrivateRoutes />}>
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/message" element={<Message />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />

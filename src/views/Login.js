@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import config from "../utils/Config";
-
 
 function Login() {
   const navigate = useNavigate();
@@ -11,8 +10,6 @@ function Login() {
     password: "",
     secret: config.jwtSecret, // Include the secret key in the request body
   });
-
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -32,7 +29,6 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem("jwtToken", data.token);
-
         navigate("/Tasks");
       })
       .catch((error) => console.error("Error:", error));
@@ -66,6 +62,9 @@ function Login() {
           Login
         </button>
       </form>
+      <p>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
+      </p>
     </div>
   );
 }

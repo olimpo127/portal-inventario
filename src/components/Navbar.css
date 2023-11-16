@@ -83,10 +83,13 @@
   color: #fff;
   text-decoration: none;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
   margin-left: 10px;
-  width: 50px; /* Adjusted width for side-by-side letters */
+  width: 120px;
   height: 25px;
   margin-right: 15px;
+}
+
+.navbar-profile:hover {
+  background-color: #3e7904ae;
 }
