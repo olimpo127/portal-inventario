@@ -21,6 +21,7 @@ function Post() {
   const [selectedOption, setSelectedOption] = useState("");
   const [showCreatePostForm, setShowCreatePostForm] = useState(false);
   const [showFiltersForm, setShowFiltersForm] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const token = localStorage.getItem("jwtToken");
 
@@ -49,31 +50,70 @@ function Post() {
     getPosts();
   }, []);
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    fetch("http://localhost:5000/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(newPost),
-    })
-      .then((response) => response.json())
-      .then((data) => {
+  
+    try {
+      const response = await fetch("http://localhost:5000/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(newPost),
+      });
+  
+      if (!response.ok) {
+        // Handle non-successful response (e.g., display an error message)
+        console.error("Error creating post:", response.statusText);
+        const errorMessage = await response.text(); // Read plain text error message
+        setSuccessMessage(`Error creating post: ${errorMessage}`);
+        return;
+      }
+  
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        // Handle JSON response
+        const data = await response.json();
         console.log("Post created:", data);
-        setNewPost({
-          service: "",
-          price: "",
-          location: "",
-          option: "",
-          user_id: "",
-        });
-        getPosts();
-      })
-      .catch((error) => console.error("Error:", error));
+      } else {
+        // Handle plain text response (if needed)
+        const textResponse = await response.text();
+        console.log("Post created (plain text):", textResponse);
+      }
+  
+      setSuccessMessage("Post created successfully!");
+      setNewPost({
+        service: "",
+        price: "",
+        location: "",
+        option: "",
+        user_id: "",
+      });
+      setShowCreatePostForm(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setSuccessMessage("Error creating post");
+    }
   };
+  
+  
+  
+  
+  useEffect(() => {
+    getPosts();
+    // Clear success message after a delay
+    const timeoutId = setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000); // Adjust the delay as needed
+  
+    return () => clearTimeout(timeoutId);
+  }, [successMessage]);
+  
+  
+  useEffect(() => {
+    getPosts();
+  }, [successMessage]);
 
   /* const handleDelete = (id) => {
     console.log("Delete button clicked with id:", id);
@@ -246,6 +286,8 @@ function Post() {
             <button onClick={clearFilters}>Clear Filters</button>
           </div>
         )}
+        
+        {successMessage && <p className="successMessage">{successMessage}</p>}
       </div>
 
       <div className="posts">

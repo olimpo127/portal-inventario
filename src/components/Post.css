@@ -214,3 +214,13 @@
     padding: 8px 16px;
   }
 }
+
+.successMessage {
+  background-color: #4caf50; /* Green color for success message */
+  color: #e8f5e9; /* Light green background color */
+  border: 1px solid #337c37; /* Dark green border */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
