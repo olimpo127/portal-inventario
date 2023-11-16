@@ -30,6 +30,25 @@ function Profile() {
     fetchUserProfile();
   }, []);
 
+  const handleDelete = async (id) => {
+    console.log("Delete button clicked with id:", id);
+  
+    try {
+      const response = await fetch(`http://localhost:5000/posts/${id}`, {
+        method: "DELETE",
+      });
+  
+      if (response.ok) {
+        console.log("Post deleted");
+      } else {
+        console.error(`Error deleting post: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  
+
   return (
     <div className="profile">
       <h1>My Profile</h1>
@@ -43,10 +62,11 @@ function Profile() {
           <p>Email: {user.email}</p>
 
           <h2>My Posts</h2>
+          <div className="posts"> 
           {user.posts && user.posts.length > 0 ? (
             <ul>
               {user.posts.map((post) => (
-                <li key={post.id}>
+                <li key={post.id} className="singlePost">
                   <strong>Service:</strong> {post.service}
                   <br />
                   <strong>Price:</strong> {post.price}
@@ -55,12 +75,20 @@ function Profile() {
                   <br />
                   <strong>Option:</strong> {post.option}
                   <br />
+                  <button
+                className="deleteButton"
+                onClick={() => handleDelete(post.id)}
+              >
+                Delete Post
+              </button>
                 </li>
               ))}
             </ul>
           ) : (
             <p>No posts found.</p>
           )}
+          </div>
+          
         </div>
       )}
     </div>

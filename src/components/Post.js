@@ -75,7 +75,7 @@ function Post() {
       .catch((error) => console.error("Error:", error));
   };
 
-  const handleDelete = (id) => {
+  /* const handleDelete = (id) => {
     console.log("Delete button clicked with id:", id);
     fetch(`http://localhost:5000/posts/${id}`, {
       method: "DELETE",
@@ -89,7 +89,7 @@ function Post() {
         }
       })
       .catch((error) => console.error("Error:", error));
-  };
+  }; */
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
@@ -267,12 +267,12 @@ function Post() {
               <br />
               <br />
               <button className="interestedButton">I am interested</button>
-              <button
+              {/* <button
                 className="deleteButton"
                 onClick={() => handleDelete(post.id)}
               >
                 Delete Post
-              </button>
+              </button> */}
             </li>
           ))}
         </ul>
