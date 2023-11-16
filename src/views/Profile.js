@@ -6,12 +6,15 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [updatePost, setUpdatePost] = useState(false);
   const [updateCurrentPost, setUpdateCurrentPost] = useState({
+    id: "",
     service: "",
     price: "",
     location: "",
     option: "",
     user_id: "",
   });
+  const [postDeleted, setPostDeleted] = useState(false);
+  const [postUpdated, setPostUpdated] = useState(false);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -36,25 +39,51 @@ function Profile() {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [postDeleted, postUpdated]);
 
   const handleDelete = async (id) => {
     console.log("Delete button clicked with id:", id);
-  
+
     try {
       const response = await fetch(`http://localhost:5000/posts/${id}`, {
         method: "DELETE",
       });
-  
+
       if (response.ok) {
         console.log("Post deleted");
-        // Update user state by filtering out the deleted post
-        setUser((prevUser) => ({
-          ...prevUser,
-          posts: prevUser.posts.filter((post) => post.id !== id),
-        }));
+        setPostDeleted(true);
+        setTimeout(() => {
+          setPostDeleted(false);
+        }, 3000);
       } else {
         console.error(`Error deleting post: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(`http://localhost:5000/posts/${updateCurrentPost.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateCurrentPost),
+      });
+
+      if (response.ok) {
+        console.log("Post updated");
+        setPostUpdated(true);
+        setUpdatePost(false);
+        setTimeout(() => {
+          setPostUpdated(false);
+        }, 3000);
+      } else {
+        console.error(`Error updating post: ${response.statusText}`);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -77,44 +106,6 @@ function Profile() {
   const handleUpdateInputChange = (event) => {
     const { name, value } = event.target;
     setUpdateCurrentPost({ ...updateCurrentPost, [name]: value });
-  };
-
-  const handleUpdate = async (event) => {
-    event.preventDefault();
-  
-    try {
-      const response = await fetch(`http://localhost:5000/posts/${updateCurrentPost.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateCurrentPost),
-      });
-  
-      if (response.ok) {
-        console.log("Post updated");
-        // Update user state with the updated post
-        setUser((prevUser) => ({
-          ...prevUser,
-          posts: prevUser.posts.map((post) =>
-            post.id === updateCurrentPost.id ? updateCurrentPost : post
-          ),
-        }));
-        setUpdateCurrentPost({
-          id: "",
-          service: "",
-          price: "",
-          location: "",
-          option: "",
-          user_id: "",
-        });
-        setUpdatePost(false);
-      } else {
-        console.error(`Error updating post: ${response.statusText}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
   };
 
   return (
@@ -201,6 +192,10 @@ function Profile() {
               </form>
             </div>
           )}
+
+          {/* Display messages */}
+          {postDeleted && <p className="message">Post deleted successfully!</p>}
+          {postUpdated && <p className="message">Post updated successfully!</p>}
         </div>
       )}
     </div>
