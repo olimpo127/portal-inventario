@@ -1,60 +1,62 @@
 .profile {
-    text-align: center;
+  text-align: center;
 }
 
 .loading {
-    font-size: 18px;
-    color: #666;
-    margin-top: 20px;
-  }
-
-  .singlePost {
-    margin: 10px;
-    border-color: blue;
-    background-color: rgba(219, 232, 195, 0.989);
-    flex-grow: 1;
-    text-align: left;
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
 }
 
 .singlePost {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .singlePost strong {
-    font-weight: bold;
-  }
-  
-  .singlePost a {
-    text-decoration: none;
-    color: #0077cc;
-  }
-  
-  .singlePost a:hover {
-    text-decoration: underline;
-  }
+  margin: 10px;
+  border-color: blue;
+  background-color: rgba(219, 232, 195, 0.989);
+  flex-grow: 1;
+  text-align: left;
+}
 
-  .posts {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Center the container horizontally */
-    max-width: 600px; /* Limit the maximum width */
-  }
-  
-  .posts h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
+.singlePost {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 
-  .updateButton {
-    display: inline-block;
+.singlePost strong {
+  font-weight: bold;
+}
+
+.singlePost a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+.singlePost a:hover {
+  text-decoration: underline;
+}
+
+.posts {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  /* Center the container horizontally */
+  max-width: 600px;
+  /* Limit the maximum width */
+}
+
+.posts h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.updateButton {
+  display: inline-block;
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -63,9 +65,12 @@
   border-radius: 4px;
   cursor: pointer;
   margin-left: 10px;
-  }
+}
 
-  .updateButton:hover {
-    background-color: #063c75;
-  }
-  
+.updateButton:hover {
+  background-color: #063c75;
+}
+
+.createUserButton {
+  margin-bottom: 15px;
+}
