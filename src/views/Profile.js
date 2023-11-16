@@ -194,8 +194,8 @@ function Profile() {
           )}
 
           {/* Display messages */}
-          {postDeleted && <p className="message">Post deleted successfully!</p>}
-          {postUpdated && <p className="message">Post updated successfully!</p>}
+          {postDeleted && <p className="delete-message">Post deleted successfully!</p>}
+          {postUpdated && <p className="update-message">Post updated successfully!</p>}
         </div>
       )}
     </div>

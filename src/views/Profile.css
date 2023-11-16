@@ -74,3 +74,25 @@
 .createUserButton {
   margin-bottom: 15px;
 }
+
+.update-message {
+  font-size: 16px;
+  color: #f0eded;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #052df4;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.delete-message {
+  font-size: 16px;
+  color: #f0eded;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f3200d;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
