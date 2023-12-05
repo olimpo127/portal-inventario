@@ -4,7 +4,7 @@
     margin-bottom: 20px;
 }
 
-.createNewPost,
+
 .filters {
     flex: 1;
     background-color: #f0f0f0;
@@ -13,31 +13,29 @@
     border-radius: 5px;
     margin-bottom: 20px;
     margin-top: 10px;
-    max-width: calc(50% - 10px);
-    box-sizing: border-box;
+
 }
 
-.createNewPost h2,
+
 .filters h2 {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-.createNewPost .form-group,
+
 .filters .form-group {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column; /* Display inputs below labels */
 }
 
-.createNewPost label,
+
 .filters label {
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.createNewPost input,
-.createNewPost select,
+
 .filters input,
 .filters select {
     width: 100%; /* Full width for inputs */
@@ -48,123 +46,52 @@
     margin-bottom: 10px;
 }
 
-.createNewPost button.createButton,
-.filters button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
-.createNewPost button.createButton:hover,
-.filters button:hover {
-    background-color: #0056b3;
-}
+
+
 
 .post {
-    background-color: brown;
+    background-color: #f9821a;
     margin-top: 30px;
 }
 
-.singlePost {
-    margin: 10px;
-    border-color: blue;
-    background-color: rgba(219, 232, 195, 0.989);
-    flex-grow: 1;
-    text-align: left;
-}
 
-.createButton {
-    margin-left: 50px;
-}
 
-.deleteButton {
-    margin-left: 60px;
-}
 
-.createNewPost h2,
+
+
 .filters h2,
-.createNewPost button.createButton,
 .filters button {
     text-align: center;
     margin: 0 auto;
     display: block;
 }
 
-.createNewPost input,
-.createNewPost select,
+
 .filters input,
 .filters select {
     width: 50%;
 }
 
 .posts {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Center the container horizontally */
-    max-width: 600px; /* Limit the maximum width */
-  }
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center the container horizontally */
+  max-width: 900px; /* Limit the maximum width */
+}
+
   
   .posts h2 {
     font-size: 24px;
     margin-bottom: 20px;
   }
   
-  .singlePost {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
+
+
   
-  .singlePost strong {
-    font-weight: bold;
-  }
-  
-  .singlePost a {
-    text-decoration: none;
-    color: #0077cc;
-  }
-  
-  .singlePost a:hover {
-    text-decoration: underline;
-  }
-  
-  .interestedButton {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .interestedButton:hover {
-    background-color: #45a048;
-  }
-  
-  .deleteButton {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .deleteButton:hover {
-    background-color: #d32f2f;
-  }
   
 
 .displayButton {
@@ -191,29 +118,6 @@
   }
 }
 
-.displayButtonFilters {
-  background-color: hsl(27, 100%, 40%);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
-  max-height: 40px;
-  max-width: 250px;
-}
-
-.displayButtonFilters:hover {
-  background-color: #a69e00;
-}
-
-@media screen and (max-width: 768px) {
-  .displayButtonFilters {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
 
 .successMessage {
   background-color: #4caf50; /* Green color for success message */
@@ -223,4 +127,41 @@
   border-radius: 5px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.filters {
+  display: flex;
+  width: 100%;
+}
+
+.filter-button {
+  height: 10px;
+  background-color: #0056b3;
+  color: white;
+  font-size: large;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  width: 130px;
+}
+
+
+.filter-button:hover {
+  background-color: #ccb800d3;
+  transform: scale(1.05);
+}
+
+.singlePost {
+  display: flex;
+  flex-direction: row;
+}
+
+.postCell {
+  margin-right: 75px;
+  border: solid 1px black;
+}
+
+.singlePost {
+  margin-bottom: 50px;
 }

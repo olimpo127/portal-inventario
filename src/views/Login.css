@@ -15,6 +15,9 @@
     max-width: 400px;
     text-align: left;
     margin-bottom: 50px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
   }
   
   .loginForm div {
@@ -29,18 +32,32 @@
     border-radius: 5px;
   }
   
-  .loginButton {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+  
+
+  .login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0400ff;
     color: #fff;
+    text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px; /* Increased border-radius for a rounder look */
     cursor: pointer;
+    margin-left: 10px;
+    height: 36px; /* Increased height for better visibility and touch area */
+    margin-top: 5px;
+    font-size: 16px; /* Adjust font size for better readability */
+    font-weight: bold; /* Make the text bold for emphasis */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Add a smooth transition effect */
   }
   
-  .loginButton:hover {
-    background-color: #0056b3;
+  .login-button:hover {
+    background-color: #e66200; /* Darker background color on hover for an interactive feel */
+    transform: scale(1.05); /* Slight scale effect on hover */
+  }
+  
+  .login-button:active {
+    transform: scale(0.95); /* Slight scale effect when the button is clicked */
   }
   
  @media (max-width: 768px) {

@@ -55,21 +55,54 @@
   margin-bottom: 20px;
 }
 
-.updateButton {
+.updateButton,
+.searchButton,
+.deleteButton {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
   color: #fff;
   text-decoration: none;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.updateButton:active,
+.deleteButton:active,
+.searchButton:active {
+  transform: scale(0.95); /* Slight scale effect when the button is clicked */
+}
+
+
+.updateButton {
+  background-color: #007bff;
 }
 
 .updateButton:hover {
-  background-color: #063c75;
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
+
+.searchButton {
+  background-color: #00ff00;
+}
+
+.searchButton:hover {
+  background-color: #00b300;
+  transform: scale(1.05);
+}
+
+.deleteButton {
+  background-color: #ff0000;
+}
+
+.deleteButton:hover {
+  background-color: #c40000;
+  transform: scale(1.05);
+}
+
 
 .createUserButton {
   margin-bottom: 15px;
@@ -95,4 +128,8 @@
   border: 1px solid #d6e9c6;
   border-radius: 4px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.rutFilter {
+  margin-bottom: 16px;
 }

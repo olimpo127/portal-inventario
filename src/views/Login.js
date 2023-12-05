@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import config from "../utils/Config";
 
@@ -29,7 +29,7 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem("jwtToken", data.token);
-        navigate("/Tasks");
+        navigate("/moviles");
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -58,13 +58,10 @@ function Login() {
             required
           />
         </div>
-        <button type="submit" className="loginButton">
+        <button type="submit" className="login-button">
           Login
         </button>
       </form>
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
     </div>
   );
 }
